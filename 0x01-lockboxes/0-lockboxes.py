@@ -1,12 +1,17 @@
 #!/usr/bin/python3
+"""Script will unlock list of lists"""
 
-canUnlockAll = __import__('0-lockboxes').canUnlockAll
 
-boxes = [[1], [2], [3], [4], []]
-print(canUnlockAll(boxes))
+def canUnlockAll(boxes):
+    """This function will take a list of lists and the content
+       of a list will unlock other lists
+    """
 
-boxes = [[1, 4, 6], [2], [0, 4, 1], [5, 6, 2], [3], [4, 1], [6]]
-print(canUnlockAll(boxes))
-
-boxes = [[1, 4], [2], [0, 4, 1], [3], [], [4, 1], [5, 6]]
-print(canUnlockAll(boxes))
+    keys = [0]
+    for key in keys:
+        for boxKey in boxes[key]:
+            if boxKey not in keys and boxKey < len(boxes):
+                keys.append(boxKey)
+    if len(keys) == len(boxes):
+        return True
+    return False
